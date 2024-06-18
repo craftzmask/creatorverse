@@ -1,0 +1,50 @@
+.header {
+  text-align: center;
+  padding-top: 8rem;
+  background-image: url('https://creatorverse-production.up.railway.app/static/media/banner.de5659898d3bfc5eb8ea.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.card {
+  position: relative;
+  border: 1px solid white;
+  height: 400px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: 'space-between';
+  align-items: 'center';
+}
+
+h1 {
+  text-transform: uppercase;
+  line-height: 1em;
+  font-family: Sono;
+  font-size: 8vw;
+}
+
+nav {  
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 250px;
+  }
+}
+
+button:hover {
+  border-color: white;
+}
+
+main {
+  padding-top: 80px;
+}

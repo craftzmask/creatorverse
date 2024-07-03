@@ -29,13 +29,24 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] List anything else that you added to improve the site's functionality!
+* [ ] List anything else that you added to improve the site's functionality!
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented required features:
+**Part 1**
+<img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHI4YjBkcjc2cDA0enhjd3BqempkeGVkdTAyaHI0eGx1aWJlY25oeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NjmGnsyOvKCPyHsGPo/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWE5ejV3cXAzbzhhcXp2MndhdGcxNWk1M3Fjb3pqaGE1azVlb3FsOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CLnUkVherX0W2DlxEs/giphy-downsized-large.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+**Part 2**
+<img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmtxNjkzaG0yZzVzbmNvcnR3Zmo0am9nZ2l6OGtkdWd4ZnZjODZ4dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b0QTqH1O4TmzEZ1hiF/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+
+<!-- Replace this with whatever GIF tool you used! -->
+GIF created with ...  👉🏿 GIF tool here
+<!-- Recommended tools:
+[Kap](https://getkap.co/) for macOS
+[ScreenToGif](https://www.screentogif.com/) for Windows
+[peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
 

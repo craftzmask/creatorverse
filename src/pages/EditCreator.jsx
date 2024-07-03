@@ -1,86 +1,96 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from '../client'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-
-export default function EditCreator() {
+const EditCreator = ({ updateCreator, deleteCreator }) => {
+  const [creator, setCreator] = useState(null)
   const { id } = useParams()
   const navigate = useNavigate()
-  const [creator, setCreator] = useState(null)
 
   useEffect(() => {
-    fetchCreator(id)
+    const fetchCreator = async () => {
+      const { data } = await supabase
+        .from('creators')
+        .select()
+        .limit(1)
+        .single() 
+        .eq('id', id)
+      setCreator(data)
+    }
+    fetchCreator()
   }, [id])
 
-  async function fetchCreator(id) {
+  const handleSubmit = async e => {
+    e.preventDefault()
     const { data } = await supabase
       .from('creators')
-      .select()
+      .update({ ...creator })
       .eq('id', id)
-      .limit(1)
-      .single()
-    setCreator(data)
-  }
-
-  async function deleteCreator() {
-    await supabase.from('creators').delete().eq('id', id)
+      .select()
+    console.log(data)
+    updateCreator(data[0])
     navigate('/')
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault()
-    console.log(creator)
+  const handleDeleteClick = async () => {
     await supabase
       .from('creators')
-      .update(creator)
-      .eq('id', creator.id)
+      .delete()
+      .eq('id', id)
+    deleteCreator(creator)
     navigate('/')
-  }
-
-  const handleChange = (event) => {
-    const { target } = event;
-    setCreator((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }));
   }
 
   if (!creator) return null
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">NAME</label>
-        <input
-          type="text" name="name" id="name" required
-          value={creator.name} onChange={handleChange} />
-      </div>
-      <div>
-        <label htmlFor="imageURL">IMAGE</label>
-        <input
-          type="text" name="imageURL" id="imageURL"
-          value={creator.imageURL} onChange={handleChange} />
-      </div>
-      <div>
-        <label htmlFor="description">DESCRIPTION</label>
-        <textarea
-          type="text" name="description" id="description" required
-          value={creator.description} onChange={handleChange}>
-        </textarea>
-      </div>
-      <div>
-        <label htmlFor="url">URL</label>
-        <input
-          type="text" name="url" id="url" required
-          value={creator.url} onChange={handleChange} />
-      </div>
-      <button type="submit">SAVE</button>
-      <button
-        style={{ width: '100%', background: 'red' }}
-        type="button"
-        onClick={deleteCreator} >
-        DELETE
-      </button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor='name'>Name</label>
+          <input
+            type='text'
+            name='name'
+            id='name'
+            value={creator.name}
+            onChange={e => setCreator({ ...creator, name: e.target.value })} />
+        </div>
+
+        <div>
+          <label htmlFor='imageURL'>Image</label>
+          <input
+            type='text'
+            name='imageURL'
+            id='imageURL'
+            value={creator.imageURL}
+            onChange={e => setCreator({ ...creator, imageURL: e.target.value })} />
+        </div>
+
+        <div>
+          <label htmlFor='description'>Description</label>
+          <textarea
+            name='description'
+            id='description'
+            value={creator.description}
+            onChange={e => setCreator({ ...creator, description: e.target.value })}></textarea>
+        </div>
+
+        <div>
+          <label htmlFor='url'>URL</label>
+          <input
+            type='text'
+            name='url'
+            id='url'
+            value={creator.url}
+            onChange={e => setCreator({ ...creator, url: e.target.value })} />
+        </div>
+        <button type='submit'>Sumbit</button>
+        <button className='pico-background-red-450' type='button' onClick={handleDeleteClick}>
+          Delete
+        </button>
+      </form>
+    </div>
   )
 }
+
+export default EditCreator

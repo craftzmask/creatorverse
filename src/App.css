@@ -1,50 +1,42 @@
-.header {
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
   text-align: center;
-  padding-top: 8rem;
-  background-image: url('https://creatorverse-production.up.railway.app/static/media/banner.de5659898d3bfc5eb8ea.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 600px;
-  width: 100%;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-.card {
-  position: relative;
-  border: 1px solid white;
-  height: 400px;
-}
-
-.card-header {
-  display: flex;
-  justify-content: 'space-between';
-  align-items: 'center';
-}
-
-h1 {
-  text-transform: uppercase;
-  line-height: 1em;
-  font-family: Sono;
-  font-size: 8vw;
-}
-
-nav {  
-  display: flex;
-  justify-content: center;
-
-  button {
-    width: 250px;
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
-button:hover {
-  border-color: white;
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
 }
 
-main {
-  padding-top: 80px;
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
 }

@@ -2,57 +2,70 @@ import { useState } from 'react'
 import { supabase } from '../client'
 import { useNavigate } from 'react-router-dom'
 
-export default function AddCreator() {
-  const [creator, setCreator] = useState({
-    name: '',
-    imageURL: '',
-    description: '',
-    url: ''
-  })
+const AddCreator = ({ addCreator }) => {
+  const [name, setName] = useState('')
+  const [imageURL, setImageURL] = useState('')
+  const [description, setDescription] = useState('')
+  const [url, setUrl] = useState('')
   const navigate = useNavigate()
 
-  const handleChange = (event) => {
-    const { target } = event;
-    setCreator((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }));
-  }
-
-  async function handleSubmit(e) {
+  const handleSubmit = async e => {
     e.preventDefault()
-    await supabase.from('creators').insert(creator)
+    const { data } = await supabase
+      .from('creators')
+      .insert({ name, imageURL, description, url })
+      .select()
+      .limit(1)
+      .single()
+    addCreator(data)
     navigate('/')
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
+      <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">NAME</label>
+          <label htmlFor='name'>Name</label>
           <input
-            type="text" name="name" id="name" required
-            value={creator.name} onChange={handleChange} />
+            type='text'
+            name='name'
+            id='name'
+            value={name}
+            onChange={e => setName(e.target.value)} />
         </div>
+
         <div>
-          <label htmlFor="imageURL">IMAGE</label>
+          <label htmlFor='imageURL'>Image</label>
           <input
-            type="text" name="imageURL" id="imageURL"
-            value={creator.imageURL} onChange={handleChange} />
+            type='text'
+            name='imageURL'
+            id='imageURL'
+            value={imageURL}
+            onChange={e => setImageURL(e.target.value)} />
         </div>
+
         <div>
-          <label htmlFor="description">DESCRIPTION</label>
+          <label htmlFor='description'>Description</label>
           <textarea
-            type="text" name="description" id="description" required
-            value={creator.description} onChange={handleChange}>
-          </textarea>
+            name='description'
+            id='description'
+            value={description}
+            onChange={e => setDescription(e.target.value)}></textarea>
         </div>
+
         <div>
-          <label htmlFor="url">URL</label>
+          <label htmlFor='url'>URL</label>
           <input
-            type="text" name="url" id="url" required
-            value={creator.url} onChange={handleChange} />
+            type='text'
+            name='url'
+            id='url'
+            value={url}
+            onChange={e => setUrl(e.target.value)} />
         </div>
-        <button type="submit">SUBMIT</button>
-    </form>
+        <button type='submit'>Sumbit</button>
+      </form>
+    </div>
   )
 }
+
+export default AddCreator

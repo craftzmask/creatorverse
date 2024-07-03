@@ -1,56 +1,57 @@
-import { useState, useEffect } from 'react'
-import { useNavigate, useParams, Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { supabase } from '../client'
+import { useNavigate, useParams } from 'react-router-dom'
 
-export default function ViewCreator() {
-  let { id } = useParams()
+const ViewCreator = ({ deleteCreator }) => {
   const [creator, setCreator] = useState(null)
+  const { id } = useParams()
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetchCreator(id)
+    const fetchCreator = async () => {
+      const { data } = await supabase
+        .from('creators')
+        .select()
+        .limit(1)
+        .single() 
+        .eq('id', id)
+      setCreator(data)
+    }
+    fetchCreator()
   }, [id])
 
-  async function fetchCreator(id) {
-    const { data } = await supabase
+  const handleDeleteClick = async () => {
+    await supabase
       .from('creators')
-      .select()
+      .delete()
       .eq('id', id)
-      .limit(1)
-      .single()
-    setCreator(data)
-  }
-
-  async function deleteCreator() {
-    await supabase.from('creators').delete().eq('id', id)
+    deleteCreator(creator)
     navigate('/')
   }
 
   if (!creator) return null
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', gap: 50 }}>
-      <div style={{ width: 1000, height: 1000 }}>
-        <img style={{ objectFit: 'contain' }} src={creator.imageURL} alt={`The ${creator.name}'s image`} />
-      </div>
-      <div>
-        <h3 style={{ color: '#0472AD' }}>{creator.name}</h3>
-        <p>{creator.description}</p>
-        <Link to={creator.url} className="contrast">
-          <i className="bi bi-link-45deg"></i>
-          {" "}
-          Creator Page
-        </Link>
-
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 40, marginTop: 40 }}>
-          <button style={{ flex: 1 }} onClick={() => navigate(`/edit/creators/${creator.id}`)}>
-            EDIT
-          </button>
-          <button style={{ flex: 1, background: 'red' }} onClick={deleteCreator}>
-            DELETE
-          </button>
+    <div>
+      <div style={{ display: 'flex', columnGap: 40, marginBottom: 40 }}>
+        <img src={creator.imageURL} alt={`${creator.name}'s image`} width="500" height="500" />
+        <div>
+          <h1 className='pico-color-azure-400' style={{ textTransform: 'uppercase' }}>
+            {creator.name}
+          </h1>
+          <p>{creator.description}</p>
+          <p>{creator.url}</p>
         </div>
       </div>
+
+      <button onClick={() => navigate(`../edit/${creator.id}`)}>
+        Edit
+      </button>
+      <button className='pico-background-red-450' style={{ marginTop: 20 }} onClick={handleDeleteClick}>
+        Delete
+      </button>
     </div>
   )
 }
+
+export default ViewCreator

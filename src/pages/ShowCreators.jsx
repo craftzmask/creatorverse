@@ -1,14 +1,17 @@
-import { Link } from 'react-router-dom'
-import CreatorCard from '../components/CreatorCard'
+import ContentCreator from '../components/ContentCreator'
 
-export default function ShowCreator({ creators }) {
+const ShowCreators = ({ creators }) => {
   if (creators.length === 0) {
-    return <p>There is no content creators. Please add one</p>
+    return <div>No creators available</div>
   }
-  
+
   return (
-    <nav className="grid">
-      {creators.map(creator => <CreatorCard creator={creator} />)}
-    </nav>
+    <div className='card-grid'>
+      {creators.map(creator => 
+        <ContentCreator key={creator.id} creator={creator}/>
+      )}
+    </div>
   )
 }
+
+export default ShowCreators

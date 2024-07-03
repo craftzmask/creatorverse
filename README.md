@@ -35,19 +35,12 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 **Part 1**
+
 <img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHI4YjBkcjc2cDA0enhjd3BqempkeGVkdTAyaHI0eGx1aWJlY25oeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NjmGnsyOvKCPyHsGPo/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 **Part 2**
+
 <img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmtxNjkzaG0yZzVzbmNvcnR3Zmo0am9nZ2l6OGtkdWd4ZnZjODZ4dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b0QTqH1O4TmzEZ1hiF/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  👉🏿 GIF tool here
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
-
 ## Notes
 
 Describe any challenges encountered while building the app or any additional context you'd like to add.
